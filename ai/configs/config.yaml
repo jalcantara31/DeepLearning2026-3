@@ -1,0 +1,77 @@
+# ==============================================================================
+# Configuração Principal do Pipeline de Séries Temporais (GRU + LSTM)
+# Sem Data Leakage — Monitoramento CBM do Compressor (data/compressor.csv)
+# ==============================================================================
+
+experiment:
+  name: "compressor_cbm_forecasting"
+  seed: 42
+  device: "auto"
+  output_dir: "results/ai"
+  plot_format: "pdf"
+
+data:
+  csv_path: "data/compressor.csv"
+  reconstruct_poly_eff_dev: true
+  drop_all_nan_cols: true
+  nrows: null
+
+preprocessing:
+  feature_cols:
+    - "act_press_ratio"
+    - "exp_press_ratio"
+    - "press_rat_dev"
+    - "act_poly_head"
+    - "exp_poly_head"
+    - "poly_head_dev"
+    - "act_shaft_power"
+    - "exp_shaft_power"
+    - "shaft_pwr_dev"
+    - "act_poly_eff"
+    - "exp_poly_eff"
+    - "poly_eff_dev"
+  target_cols:
+    - "act_poly_eff"
+  resample_freq: "5min"
+  filter_physical_anomalies: true
+  min_power_kw: 4000.0
+  min_press_ratio: 1.05
+  min_eff_pct: 50.0
+  max_eff_pct: 100.0
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  split_gap_steps: 1
+  max_ffill_steps: 3
+  scaler_type: "standard"
+
+windowing:
+  lookback: 48
+  horizon: 1
+  stride_train: 1
+  stride_eval: 1
+
+model:
+  names:
+    - "gru"
+    - "lstm"
+  hidden_size: 64
+  num_layers: 2
+  dropout: 0.20
+  bidirectional: false
+  head_hidden_size: 32
+
+training:
+  epochs: 25
+  batch_size: 128
+  lr: 0.001
+  weight_decay: 0.0001
+  loss: "huber"
+  optimizer: "adamw"
+  scheduler: "reduce_on_plateau"
+  grad_clip_norm: 1.0
+  early_stopping_patience: 6
+  early_stopping_min_delta: 0.00001
+  num_workers: 0
+  pin_memory: true
+

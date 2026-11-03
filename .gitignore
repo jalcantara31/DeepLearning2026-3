@@ -1,0 +1,100 @@
+# ==============================================================================
+# Ambientes Virtuais e Dependências
+# ==============================================================================
+deep-venv/
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# ==============================================================================
+# Dados Brutos e Processados
+# ==============================================================================
+data/
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.h5
+*.hdf5
+
+# ==============================================================================
+# Resultados de Experimentos, Métricas, Gráficos e Artefatos
+# (Garante que nenhum resultado seja salvo ou rastreado pelo Git)
+# ==============================================================================
+results/
+output/
+outputs/
+plots/
+figures/
+reports/
+metrics/
+checkpoints/
+artifacts/
+saved_models/
+
+# Arquivos de gráficos e figuras exportadas
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.eps
+
+# Checkpoints e pesos de redes neurais (PyTorch, ONNX, etc.)
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.bin
+
+# Serialização de scalers, modelos e encoders
+*.pkl
+*.pickle
+*.joblib
+
+# Relatórios e resumos de métricas
+pipeline_report.json
+*report*.json
+*metrics*.json
+*predictions*.json
+
+# ==============================================================================
+# Bytecode e Caches do Python
+# ==============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ==============================================================================
+# Jupyter Notebooks
+# ==============================================================================
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# ==============================================================================
+# IDEs e Editores de Código
+# ==============================================================================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ==============================================================================
+# Logs, Monitoramento e Profiling
+# ==============================================================================
+*.log
+runs/
+wandb/
+
+# ==============================================================================
+# Sistema Operacional
+# ==============================================================================
+.DS_Store
+Thumbs.db

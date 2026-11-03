@@ -1,0 +1,22 @@
+# Deep Learning e Configuração do Pipeline
+torch>=2.2.0
+PyYAML>=6.0.1
+tqdm>=4.66.0
+
+# Manipulação de dados e computação científica
+numpy>=1.26.4
+pandas>=2.2.2
+scipy>=1.13.0
+
+# Visualização de dados
+matplotlib>=3.8.4
+seaborn>=0.13.2
+
+# Séries temporais estatísticas e Machine Learning
+statsmodels>=0.14.2
+scikit-learn>=1.5.0
+
+# Ambiente de execução do Jupyter Notebook (VS Code / JupyterLab)
+ipython>=8.24.0
+ipykernel>=6.29.4
+jupyterlab>=4.2.0

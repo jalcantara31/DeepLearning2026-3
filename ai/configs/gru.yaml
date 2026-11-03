@@ -1,0 +1,46 @@
+experiment:
+  name: "compressor_gru_only"
+  seed: 42
+  device: "auto"
+  output_dir: "results/ai"
+  plot_format: "pdf"
+
+data:
+  csv_path: "data/compressor.csv"
+  reconstruct_poly_eff_dev: true
+  drop_all_nan_cols: true
+
+preprocessing:
+  target_cols: ["act_poly_eff"]
+  resample_freq: "5min"
+  filter_physical_anomalies: true
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  split_gap_steps: 1
+  max_ffill_steps: 3
+  scaler_type: "standard"
+
+windowing:
+  lookback: 48
+  horizon: 1
+  stride_train: 1
+  stride_eval: 1
+
+model:
+  name: "gru"
+  hidden_size: 64
+  num_layers: 2
+  dropout: 0.20
+
+training:
+  epochs: 25
+  batch_size: 128
+  lr: 0.001
+  weight_decay: 0.0001
+  loss: "huber"
+  optimizer: "adamw"
+  scheduler: "reduce_on_plateau"
+  grad_clip_norm: 1.0
+  early_stopping_patience: 6
+
